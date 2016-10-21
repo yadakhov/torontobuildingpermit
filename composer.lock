@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ed9df8b872992035f068a7fe461a635a",
-    "content-hash": "76036da3b5b55b91dbe1e1affa01bf9e",
+    "hash": "77bb33e372b937ebe61a462d2f8a6803",
+    "content-hash": "28600dff94e9b693d2874f79b93fb30f",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1866,6 +1866,55 @@
                 "environment"
             ],
             "time": "2016-09-01 10:05:43"
+        },
+        {
+            "name": "yadakhov/insert-on-duplicate-key",
+            "version": "v0.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yadakhov/insert-on-duplicate-key.git",
+                "reference": "c465e5c17b972dc17caa170caafac6c8701e4cf5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yadakhov/insert-on-duplicate-key/zipball/c465e5c17b972dc17caa170caafac6c8701e4cf5",
+                "reference": "c465e5c17b972dc17caa170caafac6c8701e4cf5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.1",
+                "illuminate/support": "^5.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/dbunit": "^2.0",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yadakhov\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yada Khov",
+                    "email": "yada.khov@gmail.com",
+                    "homepage": "http://yadakhov.com"
+                }
+            ],
+            "description": "A trait for MySQL INSERT ON DUPLICATE KEY UDPATE.",
+            "homepage": "https://github.com/yadakhov/insert-on-duplicate-key",
+            "keywords": [
+                "database",
+                "eloquent",
+                "mysql"
+            ],
+            "time": "2016-08-28 19:10:51"
         }
     ],
     "packages-dev": [
