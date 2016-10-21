@@ -8,7 +8,8 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
         "yadakhov/insert-on-duplicate-key": "^0.0.8",
-        "yadakhov/curl": "^1.0"
+        "yadakhov/curl": "^1.0",
+        "yadakhov/laradump": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

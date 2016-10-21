@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8fbb106e05b4785e0d186ac3c55f2101",
-    "content-hash": "210151f934a1580735ffd6eee07f2cfd",
+    "hash": "05f41a7915e6b3ee9fdeb7a4545b677c",
+    "content-hash": "4ced5c90555678f1d1f37e1b5671199b",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1959,6 +1959,53 @@
                 "mysql"
             ],
             "time": "2016-08-28 19:10:51"
+        },
+        {
+            "name": "yadakhov/laradump",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yadakhov/laradump.git",
+                "reference": "571cabd626070f8fec2f9042fb56c7c9898c97b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yadakhov/laradump/zipball/571cabd626070f8fec2f9042fb56c7c9898c97b7",
+                "reference": "571cabd626070f8fec2f9042fb56c7c9898c97b7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yadakhov\\Laradump\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yada Khov",
+                    "email": "yada.khov@gmail.com"
+                }
+            ],
+            "description": "A mysqldump wrapper for laravel.  Dump your table schemas and data into files.",
+            "homepage": "https://github.com/yadakhov/laradump",
+            "keywords": [
+                "laravel",
+                "migration",
+                "mysql",
+                "mysqldump"
+            ],
+            "time": "2016-10-10 23:38:46"
         }
     ],
     "packages-dev": [
