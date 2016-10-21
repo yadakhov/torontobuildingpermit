@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "77bb33e372b937ebe61a462d2f8a6803",
-    "content-hash": "28600dff94e9b693d2874f79b93fb30f",
+    "hash": "8fbb106e05b4785e0d186ac3c55f2101",
+    "content-hash": "210151f934a1580735ffd6eee07f2cfd",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1866,6 +1866,50 @@
                 "environment"
             ],
             "time": "2016-09-01 10:05:43"
+        },
+        {
+            "name": "yadakhov/curl",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yadakhov/curl.git",
+                "reference": "32d420321cde94cf81f53e9315478cf60d2760cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yadakhov/curl/zipball/32d420321cde94cf81f53e9315478cf60d2760cd",
+                "reference": "32d420321cde94cf81f53e9315478cf60d2760cd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yadakhov\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yada Khov",
+                    "email": "yada.khov@gmail.com"
+                }
+            ],
+            "description": "A simple php curl wrapper class.",
+            "homepage": "https://github.com/yadakhov/curl",
+            "keywords": [
+                "api",
+                "curl"
+            ],
+            "time": "2016-08-06 14:42:16"
         },
         {
             "name": "yadakhov/insert-on-duplicate-key",
