@@ -45,8 +45,13 @@ class Geocode extends Command
             DB::commit();
 
             $address = $this->getAddress($permit);
+            $torelay = false;
 
-            $googleUrl = 'https://torelay.com/?url=' . urlencode('https://maps.googleapis.com/maps/api/geocode/json?address=' . $address);
+            if ($torelay === true) {
+                $googleUrl = 'https://torelay.com/?url=' . urlencode('https://maps.googleapis.com/maps/api/geocode/json?address=' . $address);
+            } else {
+                $googleUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $address;
+            }
 
             $json = Curl::getInstance()->get($googleUrl);
 
