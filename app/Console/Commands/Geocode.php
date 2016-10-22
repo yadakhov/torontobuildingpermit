@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Geocode as GeocodeModel;
 use App\Models\Permit;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Console\Command;
 use Yadakhov\Curl;
@@ -57,14 +58,16 @@ class Geocode extends Command
             $address = array_get($jsonArray, 'results.0.formatted_address');
 
             DB::beginTransaction();
-
-            $geo = new GeocodeModel();
-            $geo->id = $permit->id;
-            $geo->lat = $lat;
-            $geo->lng = $lng;
-            $geo->address = $address;
-            $geo->json = $json;
-            $geo->save();
+            $data = [
+                'id' => $permit->id,
+                'lat' => $lat,
+                'lng' => $lng,
+                'address' => $address,
+                'json' => $json,
+                'created_data' => Carbon::now()->toDateTimeString(),
+                'updated_data' => Carbon::now()->toDateTimeString(),
+            ];
+            GeocodeModel::insertOnDuplicateKey($data);
 
             $permit->lat = $lat;
             $permit->lng = $lng;
