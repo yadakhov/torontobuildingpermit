@@ -32,6 +32,7 @@ class Geocode extends Command
 
     public function handle()
     {
+        $count = 1;
         while(Permit::where('geocode', 0)->exists()) {
             DB::beginTransaction();
             $permit = Permit::where('geocode', 0)->first();
@@ -80,7 +81,7 @@ class Geocode extends Command
 
             DB::commit();
 
-            $this->info('Done on ' . $permit->slug . ' with ' . $address);
+            $this->info($count++ . ': done for ' . $permit->slug . ' with ' . $lat . ',' . $lng);
         }
     }
 
