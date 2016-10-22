@@ -13,7 +13,8 @@ DROP TABLE IF EXISTS `permits_loading`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `permits_loading` (
-  `permit_num` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `permit_num` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `revision_num` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `permit_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `structure_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -43,7 +44,7 @@ CREATE TABLE `permits_loading` (
   `industrial` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `interior_alterations` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `demolition` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`permit_num`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

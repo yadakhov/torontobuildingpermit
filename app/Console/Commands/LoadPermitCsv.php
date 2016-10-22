@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Permit;
 use App\Models\PermitsLoading;
+use DB;
 use Illuminate\Console\Command;
 use ZipArchive;
 
@@ -37,6 +39,9 @@ class LoadPermitCsv extends Command
         $this->downloadZipFile();
         $this->unzipFile();
 
+        DB::statement('TRUNCATE TABLE permits_loading');
+        DB::statement('ALTER TABLE permits_loading AUTO_INCREMENT=1');
+
         $row = 1;
         if (($handle = fopen(storage_path('app/activepermits.csv'), 'r')) !== false) {
             $rows = [];
@@ -65,6 +70,10 @@ class LoadPermitCsv extends Command
 
             fclose($handle);
         }
+
+        $this->info('DONE LOADING TO LOADING TABLE');
+
+        $this->loadPermitsTable();
     }
 
     /**
@@ -119,5 +128,58 @@ class LoadPermitCsv extends Command
         }
 
         return array_combine(array_values($this->headers), array_values($data));
+    }
+
+    /**
+     * Load permit tables.
+     */
+    private function loadPermitsTable()
+    {
+        $maxId = PermitsLoading::max('id');
+
+        $startId = 1;
+
+        while ($startId <= $maxId) {
+            $endId = $startId + 999;
+            $this->info(sprintf('Loading %s to %s', $startId, $endId));
+
+            $permits = PermitsLoading::where('id', '>=', $startId)->where('id', '<=', $endId)->get();
+
+            $rows = [];
+            foreach ($permits as $permit) {
+                $permit->structure_type = trim($permit->structure_type);
+                $permit->application_date = !empty($permit->application_date) ? date('Y-m-d', strtotime($permit->application_date)) : null;
+                $permit->issued_date = !empty($permit->issued_date) ? date('Y-m-d', strtotime($permit->issued_date)) : null;
+                $permit->completed_date = !empty($permit->completed_date) ? date('Y-m-d', strtotime($permit->completed_date)) : null;
+                $permit->est_const_cost = str_replace([',', 'DO NOT UPDATE OR DELETE THIS INFO FIELD'], '', $permit->est_const_cost);
+
+                if (empty($permit->dwelling_units_created)) {
+                    $permit->dwelling_units_created = null;
+                }
+                if (empty($permit->dwelling_units_lost)) {
+                    $permit->dwelling_units_lost = null;
+                }
+                if (empty($permit->est_const_cost)) {
+                    $permit->est_const_cost = null;
+                }
+                if (empty($permit->geo_id)) {
+                    $permit->geo_id = null;
+                }
+
+                $row = $permit->toArray();
+
+                $id = $permit->permit_num . ' ' . $permit->revision_num;
+                $row['id'] = str_slug($id);
+                $address = $row['street_num'] . ' ' . $row['street_name'] . ' ' . $row['street_type'] . ' ' . $row['street_name'];
+                $address = trim($address);
+                $row['slug'] = str_slug($address);
+
+                $rows[] = $row;
+            }
+
+            $startId += 1000;
+
+            Permit::insertOnDuplicateKey($rows);
+        }
     }
 }
