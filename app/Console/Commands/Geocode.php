@@ -77,8 +77,8 @@ class Geocode extends Command
                     'lng' => $lng,
                     'address' => $address,
                     'json' => $json,
-                    'created_data' => Carbon::now()->toDateTimeString(),
-                    'updated_data' => Carbon::now()->toDateTimeString(),
+                    'created_at' => Carbon::now()->toDateTimeString(),
+                    'updated_at' => Carbon::now()->toDateTimeString(),
                 ];
                 GeocodeModel::insertOnDuplicateKey($data);
 
