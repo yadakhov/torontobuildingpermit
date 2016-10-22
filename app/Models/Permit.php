@@ -4,5 +4,11 @@ namespace App\Models;
 
 class Permit extends BaseModel
 {
-    public $table = 'permits';
+    protected $table = 'permits';
+
+    public $timestamps = false;
+
+    public $incrementing = false;
+
+    protected $guarded = [];
 }

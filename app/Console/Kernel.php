@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        \App\Console\Commands\Geocode::class,
         \App\Console\Commands\LoadPermitCsv::class,
     ];
 

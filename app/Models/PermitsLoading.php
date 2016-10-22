@@ -4,5 +4,7 @@ namespace App\Models;
 
 class PermitsLoading extends BaseModel
 {
-    public $table = 'permits_loading';
+    protected $table = 'permits_loading';
+
+    public $timestamps = false;
 }
