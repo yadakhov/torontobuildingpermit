@@ -81,7 +81,7 @@ class Geocode extends Command
 
             DB::commit();
 
-            $this->info($count++ . ': done for ' . $permit->slug . ' with ' . $lat . ',' . $lng);
+            $this->info($count++ . ': done ' . $permit->id. ' for ' . $permit->slug . ' with ' . $lat . ',' . $lng);
         }
     }
 
