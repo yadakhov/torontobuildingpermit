@@ -46,7 +46,7 @@ CREATE TABLE `permits` (
   `demolition` decimal(8,2) DEFAULT NULL,
   `geocode` tinyint(1) NOT NULL DEFAULT '0',
   `lat` decimal(11,8) DEFAULT NULL,
-  `long` decimal(11,8) DEFAULT NULL,
+  `lng` decimal(11,8) DEFAULT NULL,
   `slug` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `application_date` (`application_date`),
