@@ -62,25 +62,34 @@ class Geocode extends Command
             $lng = array_get($jsonArray, 'results.0.geometry.location.lng');
             $address = array_get($jsonArray, 'results.0.formatted_address');
 
-            DB::beginTransaction();
-            $data = [
-                'id' => $permit->id,
-                'lat' => $lat,
-                'lng' => $lng,
-                'address' => $address,
-                'json' => $json,
-                'created_data' => Carbon::now()->toDateTimeString(),
-                'updated_data' => Carbon::now()->toDateTimeString(),
-            ];
-            GeocodeModel::insertOnDuplicateKey($data);
+            if (is_null($lat)) {
 
-            $permit->lat = $lat;
-            $permit->lng = $lng;
-            $permit->save();
+                DB::beginTransaction();
+                $permit->geocode = 0;
+                $permit->save();
+                DB::commit();
 
-            DB::commit();
+            } else {
+                DB::beginTransaction();
+                $data = [
+                    'id' => $permit->id,
+                    'lat' => $lat,
+                    'lng' => $lng,
+                    'address' => $address,
+                    'json' => $json,
+                    'created_data' => Carbon::now()->toDateTimeString(),
+                    'updated_data' => Carbon::now()->toDateTimeString(),
+                ];
+                GeocodeModel::insertOnDuplicateKey($data);
 
-            $this->info('Working on ' . $permit->slug);
+                $permit->lat = $lat;
+                $permit->lng = $lng;
+                $permit->save();
+
+                DB::commit();
+            }
+
+            $this->info('Done on ' . $permit->slug);
         }
     }
 
