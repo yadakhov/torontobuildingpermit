@@ -64,6 +64,13 @@ class Geocode extends Command
             $lng = array_get($jsonArray, 'results.0.geometry.location.lng');
             $address = array_get($jsonArray, 'results.0.formatted_address');
 
+            if ($status == 'OVER_QUERY_LIMIT') {
+                DB::beginTransaction();
+                $permit->geocode = 0;
+                $permit->save();
+                DB::commit();
+            }
+
             DB::beginTransaction();
             $data = [
                 'id' => $permit->id,
