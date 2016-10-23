@@ -59,6 +59,7 @@ class Geocode extends Command
 
             $jsonArray = json_decode($json, true);
 
+            $status = array_get($jsonArray, 'status');
             $lat = array_get($jsonArray, 'results.0.geometry.location.lat');
             $lng = array_get($jsonArray, 'results.0.geometry.location.lng');
             $address = array_get($jsonArray, 'results.0.formatted_address');
@@ -66,6 +67,7 @@ class Geocode extends Command
             DB::beginTransaction();
             $data = [
                 'id' => $permit->id,
+                'status' => $status,
                 'lat' => $lat,
                 'lng' => $lng,
                 'address' => $address,
