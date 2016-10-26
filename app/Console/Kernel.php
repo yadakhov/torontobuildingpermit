@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Geocode::class,
-        \App\Console\Commands\LoadPermitCsv::class,
+        \App\Console\Commands\PermitCsv::class,
     ];
 
     /**
