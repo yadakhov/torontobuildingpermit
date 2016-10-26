@@ -9,14 +9,18 @@ class PageController extends Controller
      */
     public function front()
     {
-        dd('front');
+        $data = [];
+
+        return view('page.front', $data);
     }
 
     /**
-     * /permit/{permitId}
+     * GET /about
      */
-    public function permit()
+    public function about()
     {
-        dd('permit');
+        $data = [];
+
+        return view('page.about', $data);
     }
 }
