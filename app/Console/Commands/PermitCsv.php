@@ -8,14 +8,14 @@ use DB;
 use Illuminate\Console\Command;
 use ZipArchive;
 
-class LoadPermitCsv extends Command
+class PermitCsv extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:loadpermitcsv';
+    protected $signature = 'app:permitcsv';
 
     /**
      * The console command description.
@@ -169,7 +169,7 @@ class LoadPermitCsv extends Command
                 $row = $permit->toArray();
 
                 $id = $permit->permit_num . ' ' . $permit->revision_num;
-                $row['id'] = str_slug($id);
+                $row['id'] = strtoupper(str_slug($id));
                 $address = $row['street_num'] . ' ' . $row['street_name'] . ' ' . $row['street_type'] . ' ' . $row['street_name'];
                 $address = trim($address);
                 $row['slug'] = str_slug($address);

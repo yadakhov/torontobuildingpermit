@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permit;
+
 class PermitController extends Controller
 {
     /**
@@ -19,9 +21,19 @@ class PermitController extends Controller
     /**
      * /permit/{permitId}
      */
-    public function permit()
+    public function permit($permitId, $slug = '')
     {
-        $data = [];
+        /** @var Permit $permit */
+        $permit = Permit::find($permitId);
+
+        if ($slug != $permit->slug) {
+            return redirect()->route('permit', ['permitId' => $permit->id, 'slug' => $permit->slug]);
+        }
+
+        $data = [
+            'title' => 'Work Permit for ' . $permit->getFullAddress(),
+            'permit' => $permit,
+        ];
 
         return view('page.permit', $data);
     }
