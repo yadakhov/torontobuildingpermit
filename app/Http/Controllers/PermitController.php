@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Geocode;
 use App\Models\Permit;
 
 class PermitController extends Controller
@@ -30,9 +31,12 @@ class PermitController extends Controller
             return redirect()->route('permit', ['permitId' => $permit->id, 'slug' => $permit->slug]);
         }
 
+        $geocode = Geocode::find($permitId);
+
         $data = [
             'title' => 'Work Permit for ' . $permit->getFullAddress(),
             'permit' => $permit,
+            'geocode' => $geocode,
         ];
 
         return view('page.permit', $data);
